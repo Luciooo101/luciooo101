@@ -131,13 +131,9 @@ iframe {
 </head>
 
 <body>
-
-<div class="video-bg">
-    <iframe id="ytplayer"
-        src="https://www.youtube.com/embed/PAS0KbXeXXE?autoplay=1&mute=1&loop=1&playlist=PAS0KbXeXXE&controls=0"
-        frameborder="0"
-        allow="autoplay">
-    </iframe>
+    
+    <div class="video-bg">
+    <div id="ytplayer"></div>
 </div>
 
 <div class="overlay">
@@ -149,7 +145,7 @@ iframe {
         <div class="role">FiveM Analyst • Programmierer • AppEntwickler</div>
 
         <div class="stats">
-            👁️ Besucher: <span id="counter">...</span><br>
+            👁️ Besucher: 101
             📍 Germany
         </div>
 
@@ -169,26 +165,34 @@ iframe {
     </div>
 </div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
-let muted = true;
-const iframe = document.getElementById("ytplayer");
+let player;
 
-function toggleSound() {
-    muted = !muted;
-    iframe.src = muted
-        ? iframe.src.replace("mute=0", "mute=1")
-        : iframe.src.replace("mute=1", "mute=0");
-
-    document.getElementById("soundIcon").className =
-        muted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+        videoId: 'PAS0KbXeXXE',
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            loop: 1,
+            playlist: 'PAS0KbXeXXE',
+            mute: 1
+        }
+    });
 }
 
-// Besucher vom Server holen
-<div class="stats">
-    📍 Germany
-</div>
-
+function toggleSound() {
+    if (player.isMuted()) {
+        player.unMute();
+        document.getElementById("soundIcon").className = "fa-solid fa-volume-high";
+    } else {
+        player.mute();
+        document.getElementById("soundIcon").className = "fa-solid fa-volume-xmark";
+    }
+}
 </script>
-
 </body>
 </html>
+
