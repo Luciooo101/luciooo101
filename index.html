@@ -56,17 +56,17 @@ video, .fallback-img {
     padding: 20px;
 }
 
-/* Glass Card */
+/* ⭐ NEW: White Transparent Glass Card + Longer */
 .card {
-    background: rgba(20,20,20,0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(255,255,255,0.25); /* weiß & durchsichtig */
+    backdrop-filter: blur(10px);        /* Glass-Effekt */
     border-radius: 25px;
-    padding: 35px 30px;
+    padding: 35px 40px;
     text-align: center;
     width: 100%;
-    max-width: 360px;
+    max-width: 520px; /* länger gemacht */
     animation: fadeIn 1.2s ease;
-    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    box-shadow: 0 0 30px rgba(255,255,255,0.25); /* heller Glow */
 }
 
 @keyframes fadeIn {
@@ -138,6 +138,7 @@ video, .fallback-img {
 /* Mobile */
 @media (max-width: 480px) {
     .name { font-size: 26px; }
+    .card { max-width: 90%; padding: 25px; }
 }
 </style>
 </head>
@@ -164,8 +165,7 @@ video, .fallback-img {
         <div class="role">FiveM Analyst • Programmierer • App-Entwickler</div>
 
         <div class="stats">
-            👁️ Besucher: 101‎ ‎ ‎ ‎ ‎   
-            ‎ ‎ ‎ ‎ 📍 Germany
+            👁️ Besucher: 101 &nbsp;&nbsp;&nbsp; 📍 Germany
         </div>
 
         <div class="icons">
