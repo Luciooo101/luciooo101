@@ -56,17 +56,17 @@ video, .fallback-img {
     padding: 20px;
 }
 
-/* ⭐ NEW: White Transparent Glass Card + Longer */
+/* Glass Card */
 .card {
-    background: rgba(255,255,255,0.25); /* weiß & durchsichtig */
-    backdrop-filter: blur(10px);        /* Glass-Effekt */
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
     border-radius: 25px;
     padding: 35px 40px;
     text-align: center;
     width: 100%;
-    max-width: 520px; /* länger gemacht */
+    max-width: 520px;
     animation: fadeIn 1.2s ease;
-    box-shadow: 0 0 30px rgba(255,255,255,0.25); /* heller Glow */
+    box-shadow: 0 0 30px rgba(255,255,255,0.25);
 }
 
 @keyframes fadeIn {
@@ -116,7 +116,12 @@ video, .fallback-img {
     transform: scale(1.2);
 }
 
-/* Sound Button */
+/* Sound Button + Slider Container */
+.sound-container {
+    position: relative;
+    display: inline-block;
+}
+
 .sound-btn {
     margin-top: 20px;
     background: none;
@@ -135,7 +140,24 @@ video, .fallback-img {
     border-color: orange;
 }
 
-/* Mobile */
+/* Lautstärke-Slider */
+.volume-slider {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    display: none;
+}
+
+.sound-container:hover .volume-slider {
+    display: block;
+}
+
+.volume-slider input {
+    width: 100%;
+}
+
 @media (max-width: 480px) {
     .name { font-size: 26px; }
     .card { max-width: 90%; padding: 25px; }
@@ -177,9 +199,16 @@ video, .fallback-img {
             </a>
         </div>
 
-        <button class="sound-btn" onclick="toggleSound()">
-            <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
-        </button>
+        <!-- SOUND BUTTON + SLIDER -->
+        <div class="sound-container">
+            <button class="sound-btn" onclick="toggleSound()">
+                <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
+            </button>
+
+            <div class="volume-slider">
+                <input type="range" id="volumeControl" min="0" max="100" value="100">
+            </div>
+        </div>
 
     </div>
 </div>
@@ -188,13 +217,14 @@ video, .fallback-img {
 const video = document.getElementById("bgVideo");
 const preloader = document.getElementById("preloader");
 const fallback = document.getElementById("fallback");
+const volumeControl = document.getElementById("volumeControl");
 
-/* PRELOADER ENTFERNEN, WENN VIDEO GELADEN IST */
+/* PRELOADER ENTFERNEN */
 video.addEventListener("canplaythrough", () => {
     preloader.style.display = "none";
 });
 
-/* FALLBACK, WENN VIDEO NICHT LÄDT */
+/* FALLBACK */
 video.addEventListener("error", () => {
     preloader.style.display = "none";
     fallback.style.display = "block";
@@ -212,6 +242,11 @@ function toggleSound() {
     document.getElementById("soundIcon").className =
         video.muted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
 }
+
+/* LAUTSTÄRKE SLIDER */
+volumeControl.addEventListener("input", () => {
+    video.volume = volumeControl.value / 100;
+});
 </script>
 
 </body>
