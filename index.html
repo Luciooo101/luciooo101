@@ -56,17 +56,17 @@ video, .fallback-img {
     padding: 20px;
 }
 
-/* Glass Card */
+/* ⭐ White Transparent Glass Card + Longer */
 .card {
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.25); /* weiß & durchsichtig */
+    backdrop-filter: blur(10px);        /* Glass-Effekt */
     border-radius: 25px;
     padding: 35px 40px;
     text-align: center;
     width: 100%;
-    max-width: 520px;
+    max-width: 520px; /* länger */
     animation: fadeIn 1.2s ease;
-    box-shadow: 0 0 30px rgba(255,255,255,0.25);
+    box-shadow: 0 0 30px rgba(255,255,255,0.25); /* heller Glow */
 }
 
 @keyframes fadeIn {
@@ -116,7 +116,7 @@ video, .fallback-img {
     transform: scale(1.2);
 }
 
-/* Sound Button + Slider Container */
+/* SOUND BUTTON + SLIDER */
 .sound-container {
     position: relative;
     display: inline-block;
@@ -140,12 +140,12 @@ video, .fallback-img {
     border-color: orange;
 }
 
-/* Lautstärke-Slider */
+/* ⭐ Lautstärke-Slider rechts neben dem Button */
 .volume-slider {
     position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    left: 60px; /* rechts vom Button */
+    transform: translateY(-50%);
     width: 120px;
     display: none;
 }
@@ -156,8 +156,10 @@ video, .fallback-img {
 
 .volume-slider input {
     width: 100%;
+    accent-color: orange; /* ORANGE SLIDER */
 }
 
+/* Mobile */
 @media (max-width: 480px) {
     .name { font-size: 26px; }
     .card { max-width: 90%; padding: 25px; }
