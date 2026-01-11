@@ -17,7 +17,7 @@
 
 body {
     height: 100vh;
-    color: black;
+    color: white;
     overflow: hidden;
 }
 
@@ -28,7 +28,6 @@ video, .fallback-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     z-index: -1;
 }
 
@@ -36,13 +35,13 @@ video, .fallback-img {
 #preloader {
     position: fixed;
     inset: 0;
-    background: white;
+    background: black;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     font-size: 22px;
-    color: black;
+    color: white;
     letter-spacing: 2px;
 }
 
@@ -50,59 +49,24 @@ video, .fallback-img {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(255,255,255,0.0);
+    background: rgba(0,0,0,0.65);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
 }
 
-/* ANIMATED BORDER + GLOW + VERLAUF */
+/* Glass Card */
 .card {
-    position: relative;
-    padding: 35px 50px;
-    width: 100%;
-    max-width: 580px;
-    text-align: center;
-    border-radius: 22px;
-    color: #111;
-    backdrop-filter: blur(12px);
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.45),
-        rgba(255,255,255,0.25)
-    );
-
-    /* Glow */
-    box-shadow: 0 0 35px rgba(255,255,255,0.45);
-
-    /* Border Animation */
-    border: 3px solid transparent;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
+    background: rgba(20,20,20,0.7);
+    backdrop-filter: blur(5px);
     border-radius: 25px;
-    padding: 3px;
-    background: linear-gradient(
-        120deg,
-        #ff8800,
-        #ff00ff,
-        #00eaff,
-        #00ff6a,
-        #ff8800
-    );
-    background-size: 300% 300%;
-    animation: borderFlow 6s linear infinite;
-    z-index: -1;
-}
-
-@keyframes borderFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    padding: 35px 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    animation: fadeIn 1.2s ease;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
 
 @keyframes fadeIn {
@@ -111,8 +75,8 @@ video, .fallback-img {
 }
 
 .profile {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(255,255,255,0.7);
@@ -120,27 +84,28 @@ video, .fallback-img {
 }
 
 .name {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: bold;
-    color: #111;
+    background: linear-gradient(90deg, orange, limegreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255,165,0,0.4);
 }
 
 .role {
     font-size: 14px;
     opacity: 0.85;
-    color: #222;
     margin-bottom: 15px;
 }
 
 .stats {
     font-size: 14px;
     margin-bottom: 20px;
-    color: #222;
 }
 
 .icons a {
-    color: #111;
+    color: white;
     font-size: 30px;
     margin: 0 14px;
     transition: 0.3s;
@@ -155,11 +120,11 @@ video, .fallback-img {
 .sound-btn {
     margin-top: 20px;
     background: none;
-    border: 2px solid #222;
+    border: 2px solid white;
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    color: #222;
+    color: white;
     font-size: 18px;
     cursor: pointer;
     transition: 0.3s;
@@ -168,13 +133,11 @@ video, .fallback-img {
 .sound-btn:hover {
     background: orange;
     border-color: orange;
-    color: white;
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-    .name { font-size: 24px; }
-    .card { max-width: 90%; padding: 25px; }
+    .name { font-size: 26px; }
 }
 </style>
 </head>
@@ -201,7 +164,8 @@ video, .fallback-img {
         <div class="role">FiveM Analyst • Programmierer • App-Entwickler</div>
 
         <div class="stats">
-            👁️ Besucher: 101 &nbsp;&nbsp;&nbsp; 📍 Germany
+            👁️ Besucher: 101‎ ‎ ‎ ‎ ‎   
+            ‎ ‎ ‎ ‎ 📍 Germany
         </div>
 
         <div class="icons">
