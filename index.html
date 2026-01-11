@@ -21,14 +21,28 @@ body {
     overflow: hidden;
 }
 
-/* Video BG */
-video {
+/* Video + Fallback */
+video, .fallback-img {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 2px;
 }
 
 /* Overlay */
@@ -130,9 +144,15 @@ video {
 
 <body>
 
-<!-- ⭐ DEIN GOOGLE-DRIVE VIDEO -->
+<!-- PRELOADER -->
+<div id="preloader">Loading…</div>
+
+<!-- FALLBACK IMAGE -->
+<img src="fallback.jpg" class="fallback-img" id="fallback" style="display:none;">
+
+<!-- DROPBOX VIDEO -->
 <video id="bgVideo" autoplay muted loop playsinline>
-    <source src="https://drive.google.com/uc?export=download&id=1if8z9_pQZnAA3__1XyYTsLf5Nyl4XyT_" type="video/mp4">
+    <source src="https://dl.dropboxusercontent.com/scl/fi/xq8k5065t4mfm6qrvqkz2/AndereNiveau.mp4?rlkey=g7fjik5586sk7s9kd02g7vcvm&st=vh500chg&dl=1" type="video/mp4">
 </video>
 
 <div class="overlay">
@@ -165,8 +185,28 @@ video {
 </div>
 
 <script>
+const video = document.getElementById("bgVideo");
+const preloader = document.getElementById("preloader");
+const fallback = document.getElementById("fallback");
+
+/* PRELOADER ENTFERNEN, WENN VIDEO GELADEN IST */
+video.addEventListener("canplaythrough", () => {
+    preloader.style.display = "none";
+});
+
+/* FALLBACK, WENN VIDEO NICHT LÄDT */
+video.addEventListener("error", () => {
+    preloader.style.display = "none";
+    fallback.style.display = "block";
+});
+
+/* iPHONE FIX */
+document.addEventListener("touchstart", () => {
+    video.play();
+}, { once: true });
+
+/* SOUND BUTTON */
 function toggleSound() {
-    const video = document.getElementById("bgVideo");
     video.muted = !video.muted;
 
     document.getElementById("soundIcon").className =
